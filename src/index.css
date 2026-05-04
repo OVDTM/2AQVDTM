@@ -56,14 +56,22 @@ body {
   font-family: 'Rubik', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  min-height: 100vh;
   
-  display: flex;
-  align-items: center;
+  padding: 20px;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.row {
+  display: flex;
+  flex: 1;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }

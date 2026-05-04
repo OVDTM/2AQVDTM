@@ -7,8 +7,9 @@
   padding: 8px;
   border-radius: 100px;
   width: max-content;
+  height: max-content;
+  align-self: center;
   border: 12px solid var(--md-sys-color-surface-container-lowest);
-  margin: 20px;
 }
 
 .nav-item {
