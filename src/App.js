@@ -1,23 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+
+import NavRail from './Components/Navbar';
+import ContentContainer from './Components/ContentContainer';
+import Weather from './Components/Weather';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavRail />
+      <div className="row">
+        <div className="col">
+          <ContentContainer>
+            <Weather />
+          </ContentContainer>
+          <ContentContainer />
+        </div>
+        <div className="col">
+          <ContentContainer />
+          <ContentContainer />
+          <ContentContainer />
+        </div>
+      </div>
     </div>
   );
 }
