@@ -3,6 +3,7 @@ import './App.css';
 import NavRail from './Components/Navbar';
 import ContentContainer from './Components/ContentContainer';
 import Weather from './Components/Weather';
+import Alerts from './Components/Alerts';
 
 function App() {
   return (
@@ -16,9 +17,9 @@ function App() {
           <ContentContainer />
         </div>
         <div className="col">
-          <ContentContainer />
-          <ContentContainer />
-          <ContentContainer />
+          <ContentContainer>
+            <Alerts />
+          </ContentContainer>
         </div>
       </div>
     </div>
