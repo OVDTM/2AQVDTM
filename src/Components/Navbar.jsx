@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import '../css/navbar.css';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { Home, MyLocation, WaterDrop, AssignmentLate } from '@mui/icons-material';
 
 export default function Navrail() {

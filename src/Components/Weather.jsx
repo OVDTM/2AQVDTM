@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
 import '../css/weather.css';
 import {
   WbSunnyOutlined, OpacityOutlined, AirOutlined, SpeedOutlined,
-  WaterDropOutlined, WbTwilightOutlined, NightsStayOutlined,
-  KeyboardArrowUp, KeyboardArrowDown, Refresh, CloudOutlined,
-  ThunderstormOutlined
+  WaterDropOutlined, WbTwilightOutlined, NightsStayOutlined, 
+  CloudOutlined, ThunderstormOutlined
 } from '@mui/icons-material';
 
 export default function Weather() {
-  const [activeTab, setActiveTab] = useState('jour');
 
   const forecast = [
     { day: "Aujourd'hui", icon: <CloudOutlined />, min: 8, max: 23, active: true },
