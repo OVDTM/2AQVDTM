@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../db');
+const { fetchMeteoTousUtilisateurs } = require('../services/meteo-fetch');
 
 router.get('/', async (_req, res) => {
   try {
@@ -15,6 +16,16 @@ router.get('/derniere', async (_req, res) => {
   try {
     const result = await pool.query('SELECT * FROM meteo ORDER BY date_heure DESC LIMIT 1');
     if (result.rows.length === 0) return res.status(404).json({ erreur: 'Aucune donnée météo' });
+    res.json(result.rows[0]);
+  } catch (err) {
+    res.status(500).json({ erreur: err.message });
+  }
+});
+
+router.get('/refresh', async (_req, res) => {
+  try {
+    await fetchMeteoTousUtilisateurs();
+    const result = await pool.query('SELECT * FROM meteo ORDER BY date_heure DESC LIMIT 1');
     res.json(result.rows[0]);
   } catch (err) {
     res.status(500).json({ erreur: err.message });
