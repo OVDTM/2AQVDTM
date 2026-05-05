@@ -33,10 +33,7 @@ function App() {
       <NavRail activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
       
       <div className="view-window">
-        <div 
-          className="view-slider" 
-          style={{ transform: `translateY(-${activeIndex * 100}%)` }}
-        >
+        <div className="view-slider" style={{ transform: `translateY(-${activeIndex * 100}%)` }}>
           <Dashboard />
           
           <div className="row page">

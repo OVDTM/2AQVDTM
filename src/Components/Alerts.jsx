@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import '../css/alerts.css';
 import { 
   WaterDropOutlined, 
@@ -52,6 +52,8 @@ const getTypeIcon = (type) => {
 };
 
 export default function Alerts() {
+  const [filterType, setFilterType] = useState('All');
+
   // Smart sorting by date first and then by severity
   const sortedAlerts = useMemo(() => {
     return [...rawAlerts].sort((a, b) => {
@@ -59,6 +61,10 @@ export default function Alerts() {
       return b.niveau - a.niveau;
     });
   }, []);
+
+  const filteredAlerts = sortedAlerts.filter(
+    alert => filterType === 'All' || getSeverityConfig(alert.niveau).label === filterType
+  );
 
   const formatDate = (dateStr) => {
     const options = { day: 'numeric', month: 'short' };
@@ -68,12 +74,21 @@ export default function Alerts() {
   return (
     <div className="alerts-card">
       <div className="alerts-header">
-        <h2 className="alerts-title">Alertes Détectées</h2>
-        <span className="alerts-badge">{sortedAlerts.length} actives</span>
+        <div className="row" style={{ gap: '16px', alignItems: 'center' }}>
+          <h2 className="alerts-title">Alertes Détectées</h2>
+          <select className='form-control' value={filterType} onChange={(e) => setFilterType(e.target.value)}>
+            <option value="All">Toutes</option>
+            <option value="Critique">Critique</option>
+            <option value="Attention">Attention</option>
+          <option value="Mineur">Mineur</option>
+          <option value="Inconnu">Inconnu</option>
+        </select>
+        </div>
+        <span className="alerts-badge">{filteredAlerts.length} actives</span>
       </div>
 
       <div className="alerts-list">
-        {sortedAlerts.map((alert, index) => {
+        {filteredAlerts.map((alert, index) => {
           const severity = getSeverityConfig(alert.niveau);
           return (
             <div key={index} className="alert-item">
