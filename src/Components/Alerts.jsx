@@ -74,16 +74,16 @@ export default function Alerts() {
   return (
     <div className="alerts-card">
       <div className="alerts-header">
-        <h2 className="alerts-title">Alertes Détectées</h2>
-
-        <select className='form-control' value={filterType} onChange={(e) => setFilterType(e.target.value)}>
-          <option value="All">Toutes</option>
-          <option value="Critique">Critique</option>
-          <option value="Attention">Attention</option>
+        <div className="row" style={{ gap: '16px', alignItems: 'center' }}>
+          <h2 className="alerts-title">Alertes Détectées</h2>
+          <select className='form-control' value={filterType} onChange={(e) => setFilterType(e.target.value)}>
+            <option value="All">Toutes</option>
+            <option value="Critique">Critique</option>
+            <option value="Attention">Attention</option>
           <option value="Mineur">Mineur</option>
           <option value="Inconnu">Inconnu</option>
         </select>
-
+        </div>
         <span className="alerts-badge">{filteredAlerts.length} actives</span>
       </div>
 

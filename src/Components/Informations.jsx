@@ -150,14 +150,16 @@ export default function Informations() {
   return (
     <div className="alerts-card">
       <div className="alerts-header">
-        <h2 className="alerts-title">Journal des Observations</h2>
-        <select className='form-control' value={filterType} onChange={(e) => setFilterType(e.target.value)}>
-          <option value="All">Toutes</option>
-          <option value="Maladie détectée">Maladie détectée</option>
-          <option value="Risque maladie">Risque maladie</option>
-          <option value="Stress hydrique">Stress hydrique</option>
-          <option value="OK">OK</option>
-        </select>
+        <div className="row" style={{ gap: '16px', alignItems: 'center' }}>
+          <h2 className="alerts-title">Journal des Observations</h2>
+          <select className="form-control" value={filterType} onChange={(e) => setFilterType(e.target.value)}>
+            <option value="All">Tous</option>
+            <option value="OK">Sains</option>
+            <option value="Stress hydrique">Stress hydrique</option>
+            <option value="Risque maladie">Risque maladie</option>
+            <option value="Maladie détectée">Maladie détectée</option>
+          </select>
+        </div>
         <span className="alerts-badge">{filteredObservations.length} relevés</span>
       </div>
       
