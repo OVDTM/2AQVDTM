@@ -112,7 +112,7 @@
 
 .sun-trajectory-mock {
   flex: 1;
-  background: linear-gradient(180deg, var(--md-sys-color-surface-container-high) 0%, var(--md-sys-color-surface-container-lowest) 100%);
+  background-color: var(--md-sys-color-surface-container-blur);
   border-radius: 16px;
   padding: 12px 24px;
   position: relative;
@@ -143,12 +143,11 @@
 .sun-icon-path {
   position: absolute;
   bottom: 6px;
-  left: 30%; /* Position arbitraire pour simuler */
+  left: 30%;
   color: var(--md-sys-color-primary);
   font-size: 20px !important;
 }
 
-/* --- BOTTOM SECTION --- */
 .weather-bottom-section {
   display: flex;
   flex-direction: column;
@@ -163,7 +162,7 @@
 }
 
 .forecast-card {
-  background-color: var(--md-sys-color-surface-container-low);
+  background-color: var(--md-sys-color-surface-container-blur);
   padding: 24px 16px;
   border-radius: 16px;
   display: flex;

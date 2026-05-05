@@ -1,0 +1,126 @@
+.alerts-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  color: var(--md-sys-color-on-surface);
+  font-family: 'Rubik', sans-serif;
+}
+
+.alerts-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.alerts-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--md-sys-color-on-surface);
+}
+
+.alerts-badge {
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.alerts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.alerts-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.alerts-list::-webkit-scrollbar-thumb {
+  background-color: var(--md-sys-color-surface-variant);
+  border-radius: 10px;
+}
+
+.alert-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background-color: var(--md-sys-color-surface-container-low);
+  border-radius: 16px;
+  transition: background-color 0.2s ease;
+}
+
+.alert-item:hover {
+  background-color: var(--md-sys-color-surface-container-high);
+}
+
+.alert-icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+}
+
+.alert-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.alert-type {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.alert-parcelle {
+  font-size: 13px;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.alert-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.alert-date {
+  font-size: 12px;
+  color: var(--md-sys-color-outline);
+}
+
+.severity-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.severity-critical {
+  background-color: var(--md-sys-color-error-container);
+  color: var(--md-sys-color-on-error-container);
+}
+
+.severity-warning {
+  background-color: var(--md-sys-color-tertiary-container);
+  color: var(--md-sys-color-on-tertiary-container);
+}
+
+.severity-info {
+  background-color: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+}
