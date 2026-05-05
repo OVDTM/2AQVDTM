@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../css/navbar.css';
 import { Home, MyLocation, WaterDrop, AssignmentLate } from '@mui/icons-material';
 
-export default function Navrail() {
-  const [activeIndex, setActiveIndex] = useState(0);
-
+export default function Navrail({ activeIndex, setActiveIndex }) {
   const pages = [
     { name: 'Dashboard', icon: <Home /> },
     { name: 'Parcelles', icon: <MyLocation /> },
