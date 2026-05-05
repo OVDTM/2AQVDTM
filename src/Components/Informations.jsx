@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import '../css/alerts.css';
 import { 
   TaskAlt, 
@@ -113,6 +113,8 @@ date,etat,parcelle_id,commentaire
 `
 
 export default function Informations() {
+  const [filterType, setFilterType] = useState('All');
+
   const observations = useMemo(() => {
     const lines = csvData.trim().split('\n').slice(1);
     
@@ -121,6 +123,10 @@ export default function Informations() {
       return { date, etat, parcelle: parcelle_id, commentaire };
     }).sort((a, b) => new Date(b.date) - new Date(a.date));
   }, []);
+
+  const filteredObservations = observations.filter(
+    obs => filterType === 'All' || obs.etat === filterType
+  );
 
   const getStyleConfig = (etat) => {
     switch (etat) {
@@ -145,11 +151,18 @@ export default function Informations() {
     <div className="alerts-card">
       <div className="alerts-header">
         <h2 className="alerts-title">Journal des Observations</h2>
-        <span className="alerts-badge">{observations.length} relevés</span>
+        <select className='form-control' value={filterType} onChange={(e) => setFilterType(e.target.value)}>
+          <option value="All">Toutes</option>
+          <option value="Maladie détectée">Maladie détectée</option>
+          <option value="Risque maladie">Risque maladie</option>
+          <option value="Stress hydrique">Stress hydrique</option>
+          <option value="OK">OK</option>
+        </select>
+        <span className="alerts-badge">{filteredObservations.length} relevés</span>
       </div>
       
       <div className="alerts-list">
-        {observations.map((obs, index) => {
+        {filteredObservations.map((obs, index) => {
           const config = getStyleConfig(obs.etat);
           
           return (
