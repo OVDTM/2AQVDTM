@@ -6,6 +6,7 @@ import Weather from './Components/Weather';
 import Alerts from './Components/Alerts';
 import Levels from './Components/Levels';
 import Informations from './Components/Informations';
+import AlertChart from './Components/AlertChart';
 
 function App() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -23,6 +24,9 @@ function App() {
       <div className="col">
         <ContentContainer>
           <Alerts />
+        </ContentContainer>
+        <ContentContainer>
+          <AlertChart />
         </ContentContainer>
       </div>
     </div>
