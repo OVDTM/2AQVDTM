@@ -1,0 +1,10 @@
+.content-container {
+    background-color: var(--md-sys-color-surface-container);
+    border-radius: 12px;
+    padding: 16px;
+    margin: 8px;
+    display: flex;
+    min-height: 200px;
+    min-width: 500px;
+    flex: 1;
+}
