@@ -51,6 +51,7 @@ export default function AlertChart() {
         label: 'Nombre d\'alertes'
       }]}
       slotProps={{ tooltip: { trigger: 'axis' } }}
+      grid={{ vertical: true, horizontal: true }}
     />
   );
 }
