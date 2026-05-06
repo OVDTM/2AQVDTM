@@ -4,8 +4,6 @@
 
 #  Version Française (README.md)
 
-#  2AQVDTM - MVP de Suivi des Cultures (AgTech)
-
 Ce projet est un Minimum Viable Product (MVP) développé dans le cadre du projet d'études de Bachelor 2 à Sup de Vinci. Il s'agit d'une solution numérique full-stack conçue pour aider les acteurs agricoles à surveiller leurs cultures, suivre les conditions météorologiques et améliorer leur prise de décision grâce à un système d'alertes automatisé.
 
 ##  Fonctionnalités Principales
@@ -22,6 +20,7 @@ Ce projet est un Minimum Viable Product (MVP) développé dans le cadre du proje
 
 ##  Architecture du Projet
 
+```
 2AQVDTM-dev/
 ├── public/          # Fichiers statiques
 ├── server/          # Backend Node.js
@@ -34,6 +33,7 @@ Ce projet est un Minimum Viable Product (MVP) développé dans le cadre du proje
 │   └── data/        # Jeux de données CSV pour l'initialisation
 ├── docker-compose.yml
 └── Dockerfile
+```
 
 
 ##  Installation & Lancement
@@ -45,6 +45,7 @@ Assurez-vous d'avoir installé [Docker](https://www.docker.com/) sur votre machi
 
 # Cloner le dépôt
 git clone https://github.com/OVDTM/2AQVDTM.git
+
 cd 2AQVDTM
 
 # Basculer sur la branche de développement
@@ -78,12 +79,12 @@ npm start
 
 *Projet réalisé lors d'un sprint hackathon de 3 jours et demi.*
 
-- OxoGhost01 (Backend stuff): https://github.com/OxoGhost01
+- OxoGhost01 (Développement du Backend): https://github.com/OxoGhost01
 
-- Coubitic (Database structure and documentation): https://github.com/coubitic
+- Coubitic (Structure/logique de la BDD et documentation): https://github.com/coubitic
 
-- Ardox (Frontend) : https://github.com/LeVraiArdox 
+- Ardox (Création et développement du Frontend) : https://github.com/LeVraiArdox 
 
-- Limsayo (Project manager/Architecture) : https://github.com/Limsayo
+- Limsayo (Chef de projet et architecture Cloud) : https://github.com/Limsayo
 
 ---

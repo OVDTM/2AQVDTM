@@ -4,8 +4,6 @@
 
 #  English Version (README.md)
 
-#  2AQVDTM - AgTech Crop Monitoring MVP
-
 This project is a Minimum Viable Product (MVP) developed as part of the Sup de Vinci Bachelor 2 curriculum. It provides a full-stack digital solution to help agricultural professionals monitor their crops, track local weather conditions, and improve decision-making through an automated alert system.
 
 ##  Key Features
@@ -22,6 +20,7 @@ This project is a Minimum Viable Product (MVP) developed as part of the Sup de V
 
 ##  Project Structure
 
+```
 2AQVDTM-dev/
 ├── public/          # Static assets
 ├── server/          # Node.js Backend
@@ -34,7 +33,7 @@ This project is a Minimum Viable Product (MVP) developed as part of the Sup de V
 │   └── data/        # CSV datasets for initial data loading
 ├── docker-compose.yml
 └── Dockerfile
-
+```
 
 ##  Getting Started
 
