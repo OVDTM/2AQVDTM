@@ -14,23 +14,19 @@ function App() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const Dashboard = () => (
-    <div className="row page">
-      <div className="col">
-        <ContentContainer>
-          <Weather />
-        </ContentContainer>
-        <ContentContainer>
-          <WeatherChart />
-        </ContentContainer>
-      </div>
-      <div className="col">
-        <ContentContainer>
-          <Alerts />
-        </ContentContainer>
-        <ContentContainer>
-          <AlertChart />
-        </ContentContainer>
-      </div>
+    <div className="dashboard-grid page">
+      <ContentContainer>
+        <Weather />
+      </ContentContainer>
+      <ContentContainer>
+        <Alerts />
+      </ContentContainer>
+      <ContentContainer>
+        <WeatherChart />
+      </ContentContainer>
+      <ContentContainer>
+        <AlertChart />
+      </ContentContainer>
     </div>
   );
 

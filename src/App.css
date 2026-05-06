@@ -27,6 +27,13 @@
   width: 100%;
 }
 
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  width: 100%;
+}
+
 @media (max-width: 768px) {
   .App {
       height: 100vh;
