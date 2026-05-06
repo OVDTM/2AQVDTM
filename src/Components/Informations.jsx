@@ -148,9 +148,9 @@ export default function Informations() {
   };
 
   return (
-    <div className="alerts-card">
+    <div className="alerts-card info-card">
       <div className="alerts-header">
-        <div className="row" style={{ gap: '16px', alignItems: 'center' }}>
+        <div className="row">
           <h2 className="alerts-title">Journal des Observations</h2>
           <select className="form-control" value={filterType} onChange={(e) => setFilterType(e.target.value)}>
             <option value="All">Tous</option>

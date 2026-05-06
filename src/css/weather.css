@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: 100%;
   max-width: 800px;
   color: var(--md-sys-color-on-surface);
   font-family: 'Rubik', sans-serif;
@@ -189,4 +188,32 @@
 .forecast-temp {
   font-size: 14px;
   font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .weather-dashboard {
+        gap: 0;
+    }
+
+    .weather-top-card {
+      padding: 16px;
+      flex-direction: column;
+      
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(2, 2fr)
+    }
+
+    .weather-middle-section {
+        visibility: hidden;
+        width: 0;
+        height: 0;
+    }
+
+    .weather-bottom-section {
+        visibility: hidden;
+        width: 0;
+        height: 0;
+    }
 }

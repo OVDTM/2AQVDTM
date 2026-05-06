@@ -6,6 +6,8 @@ import Weather from './Components/Weather';
 import Alerts from './Components/Alerts';
 import Levels from './Components/Levels';
 import Informations from './Components/Informations';
+import AlertChart from './Components/AlertChart';
+import ParcelCard from './Components/ParcelCard';
 
 function App() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -17,12 +19,15 @@ function App() {
           <Weather />
         </ContentContainer>
         <ContentContainer>
-          <Levels />
+          {/* <Levels />*/}
         </ContentContainer>
       </div>
       <div className="col">
         <ContentContainer>
           <Alerts />
+        </ContentContainer>
+        <ContentContainer>
+          <AlertChart />
         </ContentContainer>
       </div>
     </div>
@@ -37,7 +42,10 @@ function App() {
           <Dashboard />
           
           <div className="row page">
-            <ContentContainer />
+            <ContentContainer>
+              <ParcelCard 
+                />
+            </ContentContainer>
           </div>
           
           <div className="row page">

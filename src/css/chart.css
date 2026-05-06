@@ -1,0 +1,9 @@
+.MuiChartsAxis-label,
+.MuiChartsAxis-tickLabel,
+.MuiChartsAxis-line,
+.MuiChartsAxis-tick,
+.MuiChartsLegend-label {
+    fill: var(--md-sys-color-on-surface) !important;
+    stroke: var(--md-sys-color-on-surface) !important;
+    color: var(--md-sys-color-on-surface) !important;
+}

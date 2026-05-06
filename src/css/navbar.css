@@ -10,6 +10,7 @@
   height: max-content;
   align-self: center;
   border: 12px solid var(--md-sys-color-surface-container-lowest);
+  z-index: 1000;
 }
 
 .nav-item {
@@ -33,4 +34,15 @@
 .nav-item.active {
   background-color: var(--md-sys-color-primary);
   color: var(--md-sys-color-on-primary);
+}
+
+@media (max-width: 480px) {
+    .nav-container {
+        flex-direction: row;
+        gap: 8px;
+        position: absolute;
+        bottom: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
