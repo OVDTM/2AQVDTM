@@ -1,26 +1,26 @@
 *Lire ce document dans d'autres langues : [English](README.md)*
 
-# 🌾 2AQVDTM - MVP de Suivi des Cultures (AgTech)
+#  2AQVDTM - MVP de Suivi des Cultures (AgTech)
 
-# 🇫🇷 Version Française (README.md)
+#  Version Française (README.md)
 
-# 🌾 2AQVDTM - MVP de Suivi des Cultures (AgTech)
+#  2AQVDTM - MVP de Suivi des Cultures (AgTech)
 
 Ce projet est un Minimum Viable Product (MVP) développé dans le cadre du projet d'études de Bachelor 2 à Sup de Vinci. Il s'agit d'une solution numérique full-stack conçue pour aider les acteurs agricoles à surveiller leurs cultures, suivre les conditions météorologiques et améliorer leur prise de décision grâce à un système d'alertes automatisé.
 
-## ✨ Fonctionnalités Principales
+##  Fonctionnalités Principales
 - **Tableau de Bord Interactif :** Vue centralisée des données agricoles.
 - **Gestion des Parcelles et Cultures :** Suivi des différents terrains et des plantations associées.
 - **Intégration Météo :** Suivi de la météo (réelle ou simulée) avec récupération automatique des données.
 - **Système d'Alertes Intelligent :** Génération d'avertissements basés sur des règles métier (ex: croisement entre les conditions météo et les observations terrain).
 
-## 🛠️ Stack Technique
+##  Stack Technique
 - **Frontend :** React.js (HTML/CSS/JS)
 - **Backend :** Node.js / Express.js
 - **Base de données :** SQL (Schémas et jeux d'essai pré-configurés)
 - **Infrastructure :** Docker & Docker Compose
 
-## 📂 Architecture du Projet
+##  Architecture du Projet
 
 2AQVDTM-dev/
 ├── public/          # Fichiers statiques
@@ -36,7 +36,7 @@ Ce projet est un Minimum Viable Product (MVP) développé dans le cadre du proje
 └── Dockerfile
 
 
-## 🚀 Installation & Lancement
+##  Installation & Lancement
 
 Vous pouvez lancer ce projet de manière native ou via Docker.
 
@@ -74,9 +74,16 @@ npm install
 npm start
 
 
-## 👥 L'Équipe (Groupe 4)
-
+##  L'Équipe (Groupe 4)
 
 *Projet réalisé lors d'un sprint hackathon de 3 jours et demi.*
+
+- OxoGhost01 (Backend stuff): https://github.com/OxoGhost01
+
+- Coubitic (Database structure and documentation): https://github.com/coubitic
+
+- Ardox (Frontend) : https://github.com/LeVraiArdox 
+
+- Limsayo (Project manager/Architecture) : https://github.com/Limsayo
 
 ---
