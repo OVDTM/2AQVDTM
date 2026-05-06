@@ -9,7 +9,7 @@ const observationsRouter = require('./routes/observations');
 const alertesRouter = require('./routes/alertes');
 const meteoRouter = require('./routes/meteo');
 const dashboardRouter = require('./routes/dashboard');
-const { demarrerScheduler } = require('./scheduler');
+const { demarrerScheduler, envoyerEmailsMeteo } = require('./scheduler');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -19,6 +19,15 @@ app.use(express.json());
 
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok' });
+});
+
+app.post('/api/debug/emails', async (_req, res) => {
+  try {
+    await envoyerEmailsMeteo();
+    res.json({ status: 'ok', message: 'Emails envoyés' });
+  } catch (err) {
+    res.status(500).json({ status: 'error', message: err.message });
+  }
 });
 
 app.use('/api/fermes', fermesRouter);

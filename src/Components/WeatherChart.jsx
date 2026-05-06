@@ -1,53 +1,42 @@
-import { LineChart } from '@mui/x-charts/LineChart'
-import '../css/chart.css'
-
-const lineData = {
-  dates: [
-    "2026-03-01", "2026-03-02", "2026-03-03", "2026-03-04", "2026-03-05", 
-    "2026-03-06", "2026-03-07", "2026-03-08", "2026-03-09", "2026-03-10", 
-    "2026-03-11", "2026-03-12", "2026-03-13", "2026-03-14", "2026-03-15", 
-    "2026-03-16", "2026-03-17", "2026-03-18", "2026-03-19", "2026-03-20", 
-    "2026-03-21", "2026-03-22", "2026-03-23", "2026-03-24", "2026-03-25", 
-    "2026-03-26", "2026-03-27", "2026-03-28", "2026-03-29", "2026-03-30", 
-    "2026-03-31", "2026-04-01", "2026-04-02", "2026-04-03", "2026-04-04", 
-    "2026-04-05", "2026-04-06", "2026-04-07", "2026-04-08", "2026-04-09", 
-    "2026-04-10", "2026-04-11", "2026-04-12", "2026-04-13", "2026-04-14", 
-    "2026-04-15", "2026-04-16", "2026-04-17", "2026-04-18", "2026-04-19", 
-    "2026-04-20", "2026-04-21", "2026-04-22", "2026-04-23", "2026-04-24", 
-    "2026-04-25", "2026-04-26", "2026-04-27", "2026-04-28", "2026-04-29"
-  ],
-  temperatures: [
-    17, 14, 29, 17, 18, 9, 16, 17, 22, 20, 17, 20, 12, 14, 9, 
-    25, 9, 17, 16, 25, 15, 17, 10, 22, 6, 21, 25, 7, 22, 22, 
-    27, 7, 6, 23, 20, 17, 20, 21, 18, 17, 20, 24, 20, 17, 15, 
-    10, 13, 30, 17, 17, 21, 13, 5, 6, 13, 14, 19, 15, 27, 23
-  ],
-  humidite: [
-    47, 74, 39, 38, 39, 94, 44, 51, 94, 91, 60, 95, 30, 76, 63, 
-    60, 33, 69, 86, 44, 74, 83, 56, 72, 70, 49, 37, 41, 59, 90, 
-    69, 38, 77, 35, 88, 45, 80, 42, 51, 85, 72, 47, 93, 69, 73, 
-    71, 71, 44, 81, 83, 93, 85, 50, 89, 92, 91, 42, 65, 89, 56
-  ],
-  pluieMm: [
-    0, 5, 30, 5, 10, 0, 20, 0, 0, 30, 0, 5, 10, 5, 0, 
-    20, 0, 30, 30, 0, 10, 10, 0, 0, 0, 30, 5, 5, 10, 20, 
-    0, 0, 0, 10, 5, 30, 0, 30, 5, 20, 10, 10, 0, 30, 20, 
-    0, 5, 0, 20, 10, 5, 10, 0, 5, 20, 30, 0, 0, 0, 20
-  ]
-};
+import { useState, useEffect } from 'react';
+import { LineChart } from '@mui/x-charts/LineChart';
+import '../css/chart.css';
 
 export default function WeatherChart() {
+  const [donnees, setDonnees]       = useState(null);
+  const [chargement, setChargement] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/meteo')
+      .then(res => res.json())
+      .then(data => {
+        const tri = [...data].reverse();
+        setDonnees({
+          dates:        tri.map(d => new Date(d.date_heure).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit' })),
+          temperatures: tri.map(d => d.temperature),
+          humidite:     tri.map(d => d.humidite),
+          pluieMm:      tri.map(d => d.pluie_mm),
+        });
+        setChargement(false);
+      })
+      .catch(() => setChargement(false));
+  }, []);
+
+  if (chargement) return <div className="chart">Chargement...</div>;
+  if (!donnees || donnees.dates.length === 0)
+    return <div className="chart">Aucune donnée météo disponible</div>;
+
   return (
     <LineChart
       className="chart"
       series={[
-        { data: lineData.temperatures, label: 'Temperature' },
-        { data: lineData.humidite, label: 'Humidité' },
-        { data: lineData.pluieMm, label: 'Pluie' }
+        { data: donnees.temperatures, label: 'Température (°C)' },
+        { data: donnees.humidite,     label: 'Humidité (%)' },
+        { data: donnees.pluieMm,      label: 'Pluie (mm)' },
       ]}
-      xAxis={[{ data: lineData.dates, label: 'Date', scaleType: 'band' }]}
+      xAxis={[{ data: donnees.dates, label: 'Date', scaleType: 'band' }]}
       slotProps={{ tooltip: { trigger: 'axis' } }}
       grid={{ vertical: true, horizontal: true }}
     />
-  )
+  );
 }

@@ -1,5 +1,35 @@
 const cron = require('node-cron');
-const { fetchMeteoTousUtilisateurs } = require('./services/meteo-fetch');
+const pool = require('./db');
+const { fetchDonneesMeteo, fetchMeteoTousUtilisateurs } = require('./services/meteo-fetch');
+const { envoyerPrevisionsJour } = require('./services/email');
+
+async function envoyerEmailsMeteo() {
+  const users = await pool.query(
+    "SELECT id, email, geolocalisation FROM utilisateur WHERE geolocalisation IS NOT NULL AND geolocalisation != '' AND email IS NOT NULL"
+  );
+
+  for (const user of users.rows) {
+    try {
+      const [lat, lon] = user.geolocalisation.split(',').map(Number);
+      if (isNaN(lat) || isNaN(lon)) continue;
+
+      const data = await fetchDonneesMeteo(lat, lon);
+      const previsions = data.daily.time.map((date, i) => ({
+        date,
+        min:            data.daily.temperature_2m_min[i],
+        max:            data.daily.temperature_2m_max[i],
+        lever_soleil:   data.daily.sunrise[i]?.split('T')[1],
+        coucher_soleil: data.daily.sunset[i]?.split('T')[1],
+        condition_code: data.daily.weather_code[i],
+      }));
+
+      await envoyerPrevisionsJour(user.email, previsions);
+      console.log(`[Email] Prévisions envoyées à ${user.email}`);
+    } catch (err) {
+      console.error(`[Email] Erreur pour user ${user.id} :`, err.message);
+    }
+  }
+}
 
 function demarrerScheduler() {
   // Toutes les heures (minute 0)
@@ -8,12 +38,17 @@ function demarrerScheduler() {
     await fetchMeteoTousUtilisateurs();
   });
 
-  console.log('[Scheduler] Démarré — météo toutes les heures');
+  // Chaque matin à 8h00 : envoi des prévisions par email
+  cron.schedule('0 8 * * *', async () => {
+    console.log('[Scheduler] Envoi des emails météo...');
+    await envoyerEmailsMeteo();
+  });
 
-  // Premier fetch immédiat au lancement du serveur
+  console.log('[Scheduler] Démarré ; météo toutes les heures, emails à 8h00');
+
   fetchMeteoTousUtilisateurs().catch((err) =>
     console.error('[Scheduler] Erreur au démarrage :', err.message)
   );
 }
 
-module.exports = { demarrerScheduler };
+module.exports = { demarrerScheduler, envoyerEmailsMeteo };
