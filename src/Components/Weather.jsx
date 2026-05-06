@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import '../css/weather.css';
 import {
-  WbSunnyOutlined, OpacityOutlined, AirOutlined, SpeedOutlined,
+  WbSunny, WbSunnyOutlined, OpacityOutlined, AirOutlined, SpeedOutlined,
   WaterDropOutlined, WbTwilightOutlined, NightsStayOutlined,
   CloudOutlined, ThunderstormOutlined
 } from '@mui/icons-material';
@@ -41,6 +41,18 @@ function positionSoleil(leverSoleil, coucherSoleil) {
   return { position, label: position < 50 ? 'Matin' : 'Après-midi' };
 }
 
+const HORIZON_Y = 52;
+const AMPLITUDE = 34;
+
+const ARC_PATH = (() => {
+  let d = `M 0,${HORIZON_Y}`;
+  for (let i = 1; i <= 100; i++)
+    d += ` L ${i},${(HORIZON_Y - Math.sin((i / 100) * Math.PI) * AMPLITUDE).toFixed(1)}`;
+  return d;
+})();
+
+const FILL_PATH = ARC_PATH + ` L 100,${HORIZON_Y} Z`;
+
 function jourSemaine(dateStr, index) {
   if (index === 0) return "Aujourd'hui";
   if (index === 1) return 'Demain';
@@ -67,7 +79,7 @@ export default function Weather() {
     prevision0?.lever_soleil,
     prevision0?.coucher_soleil
   );
-  const arcBottom = 6 + Math.sin((posSoleil / 100) * Math.PI) * 20;
+  const sunSvgY = HORIZON_Y - Math.sin((posSoleil / 100) * Math.PI) * AMPLITUDE;
 
   return (
     <div className="weather-dashboard">
@@ -132,12 +144,37 @@ export default function Weather() {
       <div className="weather-middle-section">
         <div className="sun-trajectory-mock">
           <span className="sun-label">{labelSoleil}</span>
-          <div className="trajectory-line">
-            <div className="horizon-line"></div>
-            <WbSunnyOutlined
-              className="sun-icon-path"
-              style={{ left: `calc(${posSoleil}% - 10px)`, bottom: `${arcBottom}px` }}
-            />
+          <div style={{ position: 'relative', width: '100%', height: '60px' }}>
+            <svg
+              viewBox="0 0 100 60"
+              preserveAspectRatio="none"
+              style={{ width: '100%', height: '100%', display: 'block' }}
+            >
+              <defs>
+                <clipPath id="soleil-progress">
+                  <rect x="0" y="0" width={posSoleil} height="60" />
+                </clipPath>
+              </defs>
+              {/* Ligne horizon */}
+              <line x1="0" y1={HORIZON_Y} x2="100" y2={HORIZON_Y}
+                stroke="var(--md-sys-color-outline-variant)" strokeWidth="0.5" />
+              {/* Arc complet en gris clair */}
+              <path d={ARC_PATH} fill="none"
+                stroke="var(--md-sys-color-outline-variant)" strokeWidth="1" />
+              {/* Zone remplie jusqu'au soleil */}
+              <path d={FILL_PATH} fill="rgba(212, 160, 23, 0.18)"
+                clipPath="url(#soleil-progress)" />
+              {/* Arc doré jusqu'au soleil */}
+              <path d={ARC_PATH} fill="none" stroke="#C8920A" strokeWidth="1.5"
+                clipPath="url(#soleil-progress)" />
+            </svg>
+            <WbSunny style={{
+              position: 'absolute',
+              left:  `calc(${posSoleil}% - 10px)`,
+              top:   `${sunSvgY - 10}px`,
+              color: '#C8920A',
+              fontSize: '20px',
+            }} />
           </div>
         </div>
       </div>
