@@ -1,70 +1,89 @@
-# Getting Started with Create React App
+*Read this in other languages: [Français](README.fr.md)*
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#  2AQVDTM - AgTech Crop Monitoring MVP
 
-## Available Scripts
+#  English Version (README.md)
 
-In the project directory, you can run:
+#  2AQVDTM - AgTech Crop Monitoring MVP
 
-### `npm start`
+This project is a Minimum Viable Product (MVP) developed as part of the Sup de Vinci Bachelor 2 curriculum. It provides a full-stack digital solution to help agricultural professionals monitor their crops, track local weather conditions, and improve decision-making through an automated alert system.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+##  Key Features
+- **Interactive Dashboard:** Centralized view of agricultural data.
+- **Plot & Crop Management:** Track different parcels and the cultures planted on them.
+- **Weather Integration:** Real-time (or simulated) weather tracking and automated data fetching.
+- **Smart Alert System:** Generates warnings based on business rules (e.g., specific weather conditions crossing observation thresholds).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+##  Tech Stack
+- **Frontend:** React.js (HTML/CSS/JS)
+- **Backend:** Node.js / Express.js
+- **Database:** SQL (Pre-configured schema and seeds)
+- **Infrastructure:** Docker & Docker Compose
 
-### `npm test`
+##  Project Structure
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2AQVDTM-dev/
+├── public/          # Static assets
+├── server/          # Node.js Backend
+│   ├── db/          # SQL schema and seed files
+│   ├── routes/      # API endpoints (weather, alerts, plots...)
+│   └── services/    # External API fetchers (e.g., meteo-fetch)
+├── src/             # React Frontend
+│   ├── Components/  # Reusable UI components (Navbar, Weather, Alerts...)
+│   ├── css/         # Stylesheets (Light/Dark mode supported)
+│   └── data/        # CSV datasets for initial data loading
+├── docker-compose.yml
+└── Dockerfile
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+##  Getting Started
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+You can run this project either natively or using Docker.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Option 1: Run with Docker (Recommended)
+Ensure you have [Docker](https://www.docker.com/) installed on your machine.
 
-### `npm run eject`
+git clone https://github.com/OVDTM/2AQVDTM.git
+cd 2AQVDTM
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Switch to the development branch
+git checkout dev
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Build and start the containers
+docker-compose up --build
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The application will be available at `http://localhost:3000` (Frontend) and the API at `http://localhost:5000` (Backend).
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Option 2: Run Locally (Node.js required)
 
-## Learn More
+**1. Setup the Backend**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+cd server
+npm install
+# Set up your .env file based on .env.example
+# Initialize your SQL database using /server/db/schema.sql and seed.sql
+npm start
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+**2. Setup the Frontend**
+Open a new terminal window:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+cd ../
+npm install
+npm start
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+##  The Team (Group 4)
+*Developed during a 3.5-day hackathon sprint by :*
 
-### Making a Progressive Web App
+- OxoGhost01 (Backend stuff): https://github.com/OxoGhost01
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Coubitic (Database structure and documentation): https://github.com/coubitic
 
-### Advanced Configuration
+- Ardox (Frontend) : https://github.com/LeVraiArdox 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Limsayo (Project manager/Architecture) : https://github.com/Limsayo
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
