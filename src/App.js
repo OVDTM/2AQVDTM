@@ -8,6 +8,7 @@ import Levels from './Components/Levels';
 import Informations from './Components/Informations';
 import AlertChart from './Components/AlertChart';
 import ParcelCard from './Components/ParcelCard';
+import WeatherChart from './Components/WeatherChart';
 
 function App() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -19,7 +20,7 @@ function App() {
           <Weather />
         </ContentContainer>
         <ContentContainer>
-          {/* <Levels />*/}
+          <WeatherChart />
         </ContentContainer>
       </div>
       <div className="col">
@@ -43,8 +44,7 @@ function App() {
           
           <div className="row page">
             <ContentContainer>
-              <ParcelCard 
-                />
+              <ParcelCard />
             </ContentContainer>
           </div>
           
