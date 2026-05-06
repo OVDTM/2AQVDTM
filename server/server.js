@@ -1,6 +1,8 @@
 require('dotenv').config({ path: '../.env' });
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
+const fs = require('fs');
 
 const fermesRouter = require('./routes/fermes');
 const parcellesRouter = require('./routes/parcelles');
@@ -37,6 +39,12 @@ app.use('/api/observations', observationsRouter);
 app.use('/api/alertes', alertesRouter);
 app.use('/api/meteo', meteoRouter);
 app.use('/api/dashboard', dashboardRouter);
+
+const buildPath = path.join(__dirname, 'public');
+if (fs.existsSync(buildPath)) {
+  app.use(express.static(buildPath));
+  app.get('*', (_req, res) => res.sendFile(path.join(buildPath, 'index.html')));
+}
 
 app.listen(PORT, () => {
   console.log(`Serveur démarré sur le port ${PORT}`);
