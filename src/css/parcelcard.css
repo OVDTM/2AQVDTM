@@ -74,3 +74,9 @@
   font-weight: bold;
   margin: 0;
 }
+
+@media (max-width: 480px) {
+  .parcel-card {
+    width: 100%;
+  }
+}

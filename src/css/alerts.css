@@ -1,11 +1,16 @@
 .alerts-card {
-  padding: 24px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 20px;
   width: 100%;
   color: var(--md-sys-color-on-surface);
   font-family: 'Rubik', sans-serif;
+  max-height: 400px;
+}
+
+.info-card {
+  max-height: 85vh !important;
 }
 
 .alerts-header {

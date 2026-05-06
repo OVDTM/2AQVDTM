@@ -19,7 +19,7 @@ function App() {
           <Weather />
         </ContentContainer>
         <ContentContainer>
-          <Levels />
+          {/* <Levels />*/}
         </ContentContainer>
       </div>
       <div className="col">
@@ -43,7 +43,8 @@ function App() {
           
           <div className="row page">
             <ContentContainer>
-              <ParcelCard />
+              <ParcelCard 
+                />
             </ContentContainer>
           </div>
           

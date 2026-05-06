@@ -5,7 +5,6 @@
     padding: 16px;
     margin: 8px;
     display: flex;
-    min-height: 200px;
-    min-width: 500px;
     flex: 1;
+    justify-content: center;
 }
