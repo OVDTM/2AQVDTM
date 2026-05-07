@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import '../css/parcelcard.css'
 
 import EcoIcon from '../icons/svg/eco.svg'
@@ -6,19 +7,29 @@ import FlowerCircleIcon from '../icons/svg/flower_circle.svg'
 import WheatIcon from '../icons/svg/wheat.svg'
 import WheatFillIcon from '../icons/svg/wheat_fill.svg'
 
-export default function ParcelCard() {
-  const data = [
-    { id: 1, type: 'Orge', date_semis: '2026-03-15', nom: 'Parcelle 1', localization: 'Zone A', surface: 2.45 },
-    { id: 2, type: 'Tournesol', date_semis: '2026-03-20', nom: 'Parcelle 2', localization: 'Zone B', surface: 4.49 },
-    { id: 3, type: 'Blé', date_semis: '2026-03-19', nom: 'Parcelle 3', localization: 'Zone C', surface: 2.15 },
-    { id: 4, type: 'Maïs', date_semis: '2026-03-21', nom: 'Parcelle 4', localization: 'Zone D', surface: 2.49 },
-    { id: 5, type: 'Blé', date_semis: '2026-03-16', nom: 'Parcelle 5', localization: 'Zone E', surface: 3.2 },
-    { id: 6, type: 'Tournesol', date_semis: '2026-03-03', nom: 'Parcelle 6', localization: 'Zone A', surface: 4.06 },
-    { id: 7, type: 'Orge', date_semis: '2026-03-19', nom: 'Parcelle 7', localization: 'Zone B', surface: 2.45 },
-    { id: 8, type: 'Tournesol', date_semis: '2026-03-11', nom: 'Parcelle 8', localization: 'Zone C', surface: 3.88 },
-    { id: 9, type: 'Colza', date_semis: '2026-03-12', nom: 'Parcelle 9', localization: 'Zone D', surface: 4.07 },
-    { id: 10, type: 'Colza', date_semis: '2026-03-17', nom: 'Parcelle 10', localization: 'Zone E', surface: 2.37 },
-  ]
+export default function ParcelCard({ refreshKey }) {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    Promise.all([
+      fetch('/api/parcelles').then(r => r.json()),
+      fetch('/api/cultures').then(r => r.json()),
+    ])
+      .then(([parcelles, cultures]) => {
+        const merged = parcelles.map(p => {
+          const culture = cultures.find(c => c.parcelle_id === p.id);
+          return { ...p, type: culture?.type ?? null, date_semis: culture?.date_semis ?? null };
+        });
+        setData(merged);
+      })
+      .catch(console.error)
+      .finally(() => setLoading(false));
+  }, [refreshKey]);
+
+  if (loading) return <p style={{ padding: '1rem' }}>Chargement des parcelles…</p>;
+  if (data.length === 0) return <p style={{ padding: '1rem' }}>Aucune parcelle enregistrée.</p>;
 
   const getSeverityConfig = (niveau) => {
     switch (niveau) {
@@ -61,7 +72,7 @@ export default function ParcelCard() {
   return (
     <div className="parcelcards-container">
       {data.map((item) => {
-        const zoneTheme = getZoneTheme(item.localization);
+        const zoneTheme = getZoneTheme(item.localisation);
         const icon = getIcon(item.type);
         return (
           <div className="parcel-card" key={item.id}>
