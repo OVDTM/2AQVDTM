@@ -47,9 +47,10 @@
         position: absolute;
         justify-content: center;
         bottom: 16px;
-        width: 100vw;
+        max-width: 100vw;
         flex-direction: row;
         padding: 8px;
+        gap: 8px
     }
     .nav-container {
         flex-direction: row;

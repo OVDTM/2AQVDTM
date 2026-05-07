@@ -28,6 +28,7 @@ export default function WeatherChart() {
 
   return (
     <LineChart
+      height={400}
       className="chart"
       series={[
         { data: donnees.temperatures, label: 'Température (°C)' },

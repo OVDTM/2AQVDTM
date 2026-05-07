@@ -103,7 +103,7 @@
 }
 
 @media (max-width: 480px) {
-  .parcel-card {
-    width: 100%;
+  .parcelcards-container {
+    grid-template-columns: 1fr;
   }
 }
