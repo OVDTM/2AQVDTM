@@ -1,0 +1,140 @@
+.parcelcards-container {
+  display: grid;
+  /* Grid with 3 columns*/
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  overflow-y: auto;
+}
+
+.parcel-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-radius: 16px;
+  background-color: var(--md-sys-color-surface-container-blur);
+  color: var(--md-sys-color-on-surface);
+  padding: 16px;
+}
+
+.parcel-card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.parcel-card-subtitle {
+  font-size: 1rem;
+  margin: 0;
+  color: var(--md-sys-color-on-surface-variant);
+  font-weight: normal;
+}
+
+.separator {
+  border: 1px solid var(--md-sys-color-surface-bright);
+}
+
+.casing {
+  border-radius: 8px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.theme-a {
+    border: 2px solid #f8e287;
+    background-color: #534600;
+    color: #f8e287;
+}
+
+.theme-b {
+    border: 2px solid #aac7ff;
+    background-color: #284777;
+    color: #d6e3ff;
+}
+
+.theme-c {
+    border: 2px solid #b1d18a;
+    background-color: #354e16;
+    color: #cdeda3;
+}
+
+.theme-d {
+    border: 2px solid #ffb5a0;
+    background-color: #723523;
+    color: #ffb5a0;
+}
+
+.theme-e {
+    border: 2px solid #f7b1de;
+    background-color: #69345a;
+    color: #ffd8ee;
+}
+
+.parcel-card-icon {
+  width: 40px;
+}
+
+.parcel-card-info {
+  list-style: none;
+  padding: 0;
+  margin: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.status-case {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 16px;
+  padding: 8px;
+  border: 2px solid var(--md-sys-color-secondary-container);
+  border-radius: 8px;
+  background-color: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+}
+
+.status-title {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.parcel-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.parcel-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: var(--md-sys-color-surface-container-high);
+  color: var(--md-sys-color-on-surface-variant);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.parcel-action-btn:hover {
+  background-color: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+}
+
+.parcel-action-btn--delete:hover {
+  background-color: var(--md-sys-color-error-container);
+  color: var(--md-sys-color-on-error-container);
+}
+
+@media (max-width: 480px) {
+  .parcelcards-container {
+    grid-template-columns: 1fr;
+  }
+}

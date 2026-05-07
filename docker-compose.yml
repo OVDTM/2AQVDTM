@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-agri_db}
+      POSTGRES_USER: ${POSTGRES_USER:-agri_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-agri_pass}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./server/db/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql
+      - ./server/db/seed.sql:/docker-entrypoint-initdb.d/02_seed.sql
+
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5010:5010"
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-agri_user}:${POSTGRES_PASSWORD:-agri_pass}@postgres:5432/${POSTGRES_DB:-agri_db}
+      PORT: 5010
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:

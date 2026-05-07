@@ -1,0 +1,19 @@
+# Stage 1 : build React
+FROM node:20-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY public/ ./public/
+COPY src/ ./src/
+RUN npm run build
+
+# Stage 2 : serveur Express + build React
+FROM node:20-alpine
+WORKDIR /app
+COPY server/package*.json ./server/
+RUN npm install --prefix server --omit=dev
+COPY server/ ./server/
+COPY docs/ ./docs/
+COPY --from=builder /app/build ./server/public
+EXPOSE 5010
+CMD ["node", "server/server.js"]

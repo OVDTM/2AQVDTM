@@ -1,0 +1,10 @@
+.content-container {
+    background-color: var(--md-sys-color-surface-container-blur);
+    backdrop-filter: blur(20px);
+    border-radius: 12px;
+    padding: 16px;
+    margin: 8px;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+}
