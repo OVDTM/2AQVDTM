@@ -4,13 +4,7 @@
 
 Ce projet est un Minimum Viable Product (MVP) développé dans le cadre du Bachelor 2 à Sup de Vinci. Il s'agit d'une solution numérique full-stack conçue pour aider les acteurs agricoles à surveiller leurs cultures, suivre les conditions météorologiques et améliorer leur prise de décision grâce à un système d'alertes automatisé.
 
-<<<<<<< Updated upstream
-#  2AQVDTM - MVP de Suivi des Cultures (AgTech)
-
-Ce projet est un Minimum Viable Product (MVP) développé dans le cadre du projet d'études de Bachelor 2 à Sup de Vinci. Il s'agit d'une solution numérique full-stack conçue pour aider les acteurs agricoles à surveiller leurs cultures, suivre les conditions météorologiques et améliorer leur prise de décision grâce à un système d'alertes automatisé.
-=======
 **En ligne :** https://2aqvdtm.oxoghost.dev
->>>>>>> Stashed changes
 
 ## Fonctionnalités Principales
 - **Tableau de Bord Interactif :** Vue centralisée des données agricoles.
@@ -26,20 +20,6 @@ Ce projet est un Minimum Viable Product (MVP) développé dans le cadre du proje
 
 ## Architecture du Projet
 
-<<<<<<< Updated upstream
-2AQVDTM-dev/
-├── public/          # Fichiers statiques
-├── server/          # Backend Node.js
-│   ├── db/          # Fichiers SQL (MCD, initialisation)
-│   ├── routes/      # Endpoints de l'API (météo, alertes, parcelles...)
-│   └── services/    # Scripts de récupération externes (ex: meteo-fetch)
-├── src/             # Frontend React
-│   ├── Components/  # Composants UI (Navbar, Weather, Alerts...)
-│   ├── css/         # Feuilles de style (Mode clair/sombre inclus)
-│   └── data/        # Jeux de données CSV pour l'initialisation
-├── docker-compose.yml
-└── Dockerfile
-=======
 ```
 2AQVDTM/
 ├── public/                  # Fichiers statiques
@@ -58,7 +38,6 @@ Ce projet est un Minimum Viable Product (MVP) développé dans le cadre du proje
 ├── deploy.sh                # Script de déploiement (rsync + build distant)
 └── .env.example             # Modèle de variables d'environnement
 ```
->>>>>>> Stashed changes
 
 ## Installation & Lancement (Développement)
 
@@ -130,19 +109,7 @@ Voir `.env.example` pour la liste complète. Obligatoires en production :
 ## L'Équipe (Groupe 4)
 *Projet réalisé lors d'un sprint hackathon de 3 jours et demi.*
 
-<<<<<<< Updated upstream
-- OxoGhost01 (Backend stuff): https://github.com/OxoGhost01
-
-- Coubitic (Database structure and documentation): https://github.com/coubitic
-
-- Ardox (Frontend) : https://github.com/LeVraiArdox 
-
-- Limsayo (Project manager/Architecture) : https://github.com/Limsayo
-
----
-=======
 - OxoGhost01 (Backend) : https://github.com/OxoGhost01
 - Coubitic (Base de données & documentation) : https://github.com/coubitic
 - Ardox (Frontend) : https://github.com/LeVraiArdox
 - Limsayo (Chef de projet / Architecture) : https://github.com/Limsayo
->>>>>>> Stashed changes

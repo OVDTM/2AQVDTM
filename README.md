@@ -22,21 +22,6 @@ This project is a Minimum Viable Product (MVP) developed as part of the Sup de V
 
 ## Project Structure
 
-<<<<<<< Updated upstream
-2AQVDTM-dev/
-├── public/          # Static assets
-├── server/          # Node.js Backend
-│   ├── db/          # SQL schema and seed files
-│   ├── routes/      # API endpoints (weather, alerts, plots...)
-│   └── services/    # External API fetchers (e.g., meteo-fetch)
-├── src/             # React Frontend
-│   ├── Components/  # Reusable UI components (Navbar, Weather, Alerts...)
-│   ├── css/         # Stylesheets (Light/Dark mode supported)
-│   └── data/        # CSV datasets for initial data loading
-├── docker-compose.yml
-└── Dockerfile
-
-=======
 ```
 2AQVDTM/
 ├── public/                  # Static assets
@@ -55,7 +40,6 @@ This project is a Minimum Viable Product (MVP) developed as part of the Sup de V
 ├── deploy.sh                # Deployment script (rsync + remote build)
 └── .env.example             # Environment variable template
 ```
->>>>>>> Stashed changes
 
 ## Getting Started (Development)
 

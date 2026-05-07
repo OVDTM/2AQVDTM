@@ -1,0 +1,34 @@
+.fab-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.fab {
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 8px 3px rgba(0,0,0,0.15);
+  font-family: inherit;
+}
+
+.fab:hover {
+  box-shadow: 0 6px 12px 4px rgba(0,0,0,0.2);
+  transform: translateY(-2px);
+}
+
+.fab-large {
+  background-color: var(--md-sys-color-primary); 
+  color: var(--md-sys-color-on-primary);
+  height: 75px;
+  width: 75px;
+  padding: 0 16px;
+  border-radius: 16px;
+}
