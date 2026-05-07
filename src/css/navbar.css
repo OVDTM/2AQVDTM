@@ -1,16 +1,22 @@
+.nav-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  width: max-content;
+  height: max-content;
+  align-self: center;
+  z-index: 1000;
+}
+
 .nav-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 8px;
   background-color: var(--md-sys-color-surface-container);
   padding: 8px;
   border-radius: 100px;
-  width: max-content;
-  height: max-content;
-  align-self: center;
   border: 12px solid var(--md-sys-color-surface-container-lowest);
-  z-index: 1000;
 }
 
 .nav-item {
@@ -37,12 +43,16 @@
 }
 
 @media (max-width: 480px) {
+    .nav-rail {
+        position: absolute;
+        justify-content: center;
+        bottom: 16px;
+        width: 100vw;
+        flex-direction: row;
+        padding: 8px;
+    }
     .nav-container {
         flex-direction: row;
-        gap: 8px;
-        position: absolute;
-        bottom: 8px;
-        left: 50%;
-        transform: translateX(-50%);
+        padding: 8px;
     }
 }

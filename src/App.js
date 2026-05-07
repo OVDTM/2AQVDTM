@@ -49,10 +49,6 @@ function App() {
           </div>
           
           <div className="row page">
-            <ContentContainer />
-          </div>
-
-          <div className="row page">
             <ContentContainer>
               <Informations />
             </ContentContainer>
