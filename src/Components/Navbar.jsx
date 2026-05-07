@@ -27,7 +27,7 @@ export default function Navrail({ activeIndex, setActiveIndex }) {
         <button className={`nav-item`} onClick={() => alert('Déconnexion')}>
           <Logout />
         </button>
-        <button className={`nav-item`} onClick={() => alert('redirecting to docs')}>
+        <button className={`nav-item`} onClick={() => window.open('/doc', '_blank')}>
           <BookIcon />
         </button>
       </nav>

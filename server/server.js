@@ -11,6 +11,7 @@ const observationsRouter = require('./routes/observations');
 const alertesRouter = require('./routes/alertes');
 const meteoRouter = require('./routes/meteo');
 const dashboardRouter = require('./routes/dashboard');
+const docRouter = require('./routes/doc');
 const { demarrerScheduler, envoyerEmailsMeteo } = require('./scheduler');
 
 const app = express();
@@ -39,6 +40,7 @@ app.use('/api/observations', observationsRouter);
 app.use('/api/alertes', alertesRouter);
 app.use('/api/meteo', meteoRouter);
 app.use('/api/dashboard', dashboardRouter);
+app.use('/doc', docRouter);
 
 const buildPath = path.join(__dirname, 'public');
 if (fs.existsSync(buildPath)) {
