@@ -4,11 +4,11 @@ const { fetchDonneesMeteo, fetchMeteoTousUtilisateurs } = require('./services/me
 const { envoyerPrevisionsJour } = require('./services/email');
 
 async function envoyerEmailsMeteo() {
-  const users = await pool.query(
+  const { rows } = await pool.query(
     "SELECT id, email, geolocalisation FROM utilisateur WHERE geolocalisation IS NOT NULL AND geolocalisation != '' AND email IS NOT NULL"
   );
 
-  for (const user of users.rows) {
+  for (const user of rows) {
     try {
       const [lat, lon] = user.geolocalisation.split(',').map(Number);
       if (isNaN(lat) || isNaN(lon)) continue;
@@ -24,31 +24,16 @@ async function envoyerEmailsMeteo() {
       }));
 
       await envoyerPrevisionsJour(user.email, previsions);
-      console.log(`[Email] Prévisions envoyées à ${user.email}`);
     } catch (err) {
-      console.error(`[Email] Erreur pour user ${user.id} :`, err.message);
+      console.error(`email user ${user.id}:`, err.message);
     }
   }
 }
 
 function demarrerScheduler() {
-  // Toutes les heures (minute 0)
-  cron.schedule('0 * * * *', async () => {
-    console.log('[Scheduler] Récupération météo...');
-    await fetchMeteoTousUtilisateurs();
-  });
-
-  // Chaque matin à 8h00 : envoi des prévisions par email
-  cron.schedule('0 8 * * *', async () => {
-    console.log('[Scheduler] Envoi des emails météo...');
-    await envoyerEmailsMeteo();
-  });
-
-  console.log('[Scheduler] Démarré ; météo toutes les heures, emails à 8h00');
-
-  fetchMeteoTousUtilisateurs().catch((err) =>
-    console.error('[Scheduler] Erreur au démarrage :', err.message)
-  );
+  cron.schedule('0 * * * *', fetchMeteoTousUtilisateurs);
+  cron.schedule('0 8 * * *', envoyerEmailsMeteo);
+  fetchMeteoTousUtilisateurs().catch(err => console.error('meteo init:', err.message));
 }
 
 module.exports = { demarrerScheduler, envoyerEmailsMeteo };

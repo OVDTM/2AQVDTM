@@ -13,7 +13,7 @@ async function fetchDonneesMeteo(latitude, longitude) {
   });
 
   const response = await fetch(`${OPEN_METEO_URL}?${params}`);
-  if (!response.ok) throw new Error(`Erreur API météo : ${response.status}`);
+  if (!response.ok) throw new Error(`open-meteo ${response.status}`);
   return response.json();
 }
 
@@ -26,20 +26,19 @@ async function sauvegarderMeteo(data, user_id) {
 }
 
 async function fetchMeteoTousUtilisateurs() {
-  const users = await pool.query(
+  const { rows } = await pool.query(
     "SELECT id, geolocalisation FROM utilisateur WHERE geolocalisation IS NOT NULL AND geolocalisation != ''"
   );
 
-  for (const user of users.rows) {
+  for (const user of rows) {
     try {
       const [lat, lon] = user.geolocalisation.split(',').map(Number);
       if (!isNaN(lat) && !isNaN(lon)) {
         const data = await fetchDonneesMeteo(lat, lon);
         await sauvegarderMeteo(data, user.id);
-        console.log(`[Météo] Sauvegardé pour user ${user.id} : T°${data.current.temperature_2m}°C`);
       }
     } catch (err) {
-      console.error(`[Météo] Erreur pour user ${user.id} :`, err.message);
+      console.error(`meteo user ${user.id}:`, err.message);
     }
   }
 }
