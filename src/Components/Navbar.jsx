@@ -1,6 +1,7 @@
 import React from 'react';
 import '../css/navbar.css';
-import { Home, MyLocation, WaterDrop, AssignmentLate, Logout } from '@mui/icons-material';
+import { Home, MyLocation, AssignmentLate, Logout } from '@mui/icons-material';
+import BookIcon from '@mui/icons-material/Book';
 
 export default function Navrail({ activeIndex, setActiveIndex }) {
   const pages = [
@@ -25,6 +26,9 @@ export default function Navrail({ activeIndex, setActiveIndex }) {
       <nav className="nav-container">
         <button className={`nav-item`} onClick={() => alert('Déconnexion')}>
           <Logout />
+        </button>
+        <button className={`nav-item`} onClick={() => alert('redirecting to docs')}>
+          <BookIcon />
         </button>
       </nav>
     </div>
