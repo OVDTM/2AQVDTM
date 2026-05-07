@@ -13,6 +13,7 @@ import FabParcelles from './Components/ParcelFloatingActionButtonx';
 
 function App() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [parcelRefreshKey, setParcelRefreshKey] = useState(0);
 
   const Dashboard = () => (
     <div className="dashboard-grid page">
@@ -41,8 +42,8 @@ function App() {
           
           <div className="row page">
             <ContentContainer>
-              <ParcelCard />
-              <FabParcelles />
+              <ParcelCard refreshKey={parcelRefreshKey} />
+              <FabParcelles onCreated={() => setParcelRefreshKey(k => k + 1)} />
             </ContentContainer>
           </div>
           

@@ -4,20 +4,20 @@ import '../css/fab.css';
 import { Add } from '@mui/icons-material';
 import CreateParcelPopup from './Dialog';
 
-export default function FabMenu() {
+export default function FabMenu({ onCreated }) {
   const [open, setOpen] = useState(false);
   return (
     <>
         <div className="fab-container">
-        <button 
-            className="fab fab-large" 
+        <button
+            className="fab fab-large"
             title="Créer une parcelle"
             onClick={() => setOpen(true)}
         >
             <Add />
         </button>
         </div>
-        <CreateParcelPopup open={open} handleClose={() => setOpen(false)} />
+        <CreateParcelPopup open={open} handleClose={() => setOpen(false)} onCreated={onCreated} />
     </>
   );
 }

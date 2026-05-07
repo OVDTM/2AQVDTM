@@ -13,14 +13,10 @@ import '../css/dialog.css';
 
 const PLANT_TYPES = ['Blé', 'Maïs', 'Orge', 'Tournesol', 'Colza'];
 
-export default function CreateParcelPopup({ open, handleClose }) {
-  const [formData, setFormData] = useState({
-    name: '',
-    size: '',
-    type: '',
-    date: '',
-    zone: ''
-  });
+const EMPTY_FORM = { name: '', size: '', type: '', date: '', zone: '' };
+
+export default function CreateParcelPopup({ open, handleClose, onCreated }) {
+  const [formData, setFormData] = useState(EMPTY_FORM);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -28,8 +24,7 @@ export default function CreateParcelPopup({ open, handleClose }) {
 
   const handleSubmit = async () => {
     try {
-      // Création de la parcelle
-      const parcelleResponse = await fetch('http://localhost:5000/api/parcelles', {
+      const parcelleResponse = await fetch('/api/parcelles', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -43,9 +38,8 @@ export default function CreateParcelPopup({ open, handleClose }) {
       if (!parcelleResponse.ok) throw new Error("Plantade sur la création de la parcelle.");
       const nouvelleParcelle = await parcelleResponse.json();
 
-      // Création de la culture
       if (formData.type && formData.date) {
-        const cultureResponse = await fetch('http://localhost:5000/api/cultures', {
+        const cultureResponse = await fetch('/api/cultures', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -58,8 +52,9 @@ export default function CreateParcelPopup({ open, handleClose }) {
         if (!cultureResponse.ok) throw new Error("La parcelle est là, mais la culture a foiré.");
       }
 
-      console.log(`Parcelle ${formData.name} créée et plantée avec succès !`);
+      setFormData(EMPTY_FORM);
       handleClose();
+      onCreated?.();
 
     } catch (error) {
       console.error("Eh bah bravo :", error);
