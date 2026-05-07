@@ -102,6 +102,37 @@
   margin: 0;
 }
 
+.parcel-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.parcel-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: var(--md-sys-color-surface-container-high);
+  color: var(--md-sys-color-on-surface-variant);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.parcel-action-btn:hover {
+  background-color: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+}
+
+.parcel-action-btn--delete:hover {
+  background-color: var(--md-sys-color-error-container);
+  color: var(--md-sys-color-on-error-container);
+}
+
 @media (max-width: 480px) {
   .parcelcards-container {
     grid-template-columns: 1fr;
