@@ -43,7 +43,6 @@ function App() {
           <div className="row page">
             <ContentContainer>
               <ParcelCard refreshKey={parcelRefreshKey} />
-              <FabParcelles onCreated={() => setParcelRefreshKey(k => k + 1)} />
             </ContentContainer>
           </div>
           
@@ -54,6 +53,9 @@ function App() {
           </div>
         </div>
       </div>
+      {activeIndex === 1 && (
+        <FabParcelles onCreated={() => setParcelRefreshKey(k => k + 1)} />
+      )}
     </div>
   );
 }
