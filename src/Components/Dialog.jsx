@@ -26,9 +26,45 @@ export default function CreateParcelPopup({ open, handleClose }) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = () => {
-    console.log("Parcelle prête pour la moisson :", formData);
-    handleClose();
+  const handleSubmit = async () => {
+    try {
+      // Création de la parcelle
+      const parcelleResponse = await fetch('http://localhost:5000/api/parcelles', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nom: formData.name,
+          localisation: formData.zone,
+          surface: parseFloat(formData.size),
+          ferme_id: 1
+        })
+      });
+
+      if (!parcelleResponse.ok) throw new Error("Plantade sur la création de la parcelle.");
+      const nouvelleParcelle = await parcelleResponse.json();
+
+      // Création de la culture
+      if (formData.type && formData.date) {
+        const cultureResponse = await fetch('http://localhost:5000/api/cultures', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: formData.type,
+            date_semis: formData.date,
+            parcelle_id: nouvelleParcelle.id
+          })
+        });
+
+        if (!cultureResponse.ok) throw new Error("La parcelle est là, mais la culture a foiré.");
+      }
+
+      console.log(`Parcelle ${formData.name} créée et plantée avec succès !`);
+      handleClose();
+
+    } catch (error) {
+      console.error("Eh bah bravo :", error);
+      alert(error.message);
+    }
   };
 
   return (
