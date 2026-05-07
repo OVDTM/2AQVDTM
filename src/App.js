@@ -9,6 +9,7 @@ import Informations from './Components/Informations';
 import AlertChart from './Components/AlertChart';
 import ParcelCard from './Components/ParcelCard';
 import WeatherChart from './Components/WeatherChart';
+import FabParcelles from './Components/ParcelFloatingActionButtonx';
 
 function App() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -45,6 +46,7 @@ function App() {
           <div className="row page">
             <ContentContainer>
               <ParcelCard />
+              <FabParcelles />
             </ContentContainer>
           </div>
           
