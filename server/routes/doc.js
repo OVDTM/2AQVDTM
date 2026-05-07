@@ -29,7 +29,7 @@ function renderPage(htmlContent, currentSlug) {
   <title>Documentation — 2AQVDTM</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    /* M3 color tokens */
+
     :root {
       --md-sys-color-primary:                  rgb(177 209 138);
       --md-sys-color-surface-tint:             rgb(177 209 138);
@@ -87,7 +87,7 @@ function renderPage(htmlContent, currentSlug) {
       color: var(--md-sys-color-on-surface);
     }
 
-    /* ── Navigation Drawer (M3) ── */
+
     aside {
       width: 260px; min-height: 100vh; flex-shrink: 0;
       background: var(--md-sys-color-surface-container);
@@ -156,12 +156,12 @@ function renderPage(htmlContent, currentSlug) {
       color: var(--md-sys-color-on-surface);
     }
 
-    /* ── Main content ── */
+
     main {
       flex: 1; padding: 48px 56px; max-width: 900px;
     }
 
-    /* M3 Typography scale */
+
     main :is(h1) {
       font-size: 2.25rem; font-weight: 400; line-height: 1.2; letter-spacing: -.02em;
       color: var(--md-sys-color-primary); margin-bottom: 28px;

@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../db');
 
-// Règles métier : génère des alertes à partir des données météo
 async function genererAlertes() {
   const meteo = await pool.query(
     'SELECT * FROM meteo ORDER BY date_heure DESC LIMIT 1'
