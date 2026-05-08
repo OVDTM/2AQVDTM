@@ -1,7 +1,5 @@
 *Read this in other languages: [Français](README.fr.md)*
 
-# 2AQVDTM - AgTech Crop Monitoring MVP
-
 #  2AQVDTM - AgTech Crop Monitoring MVP
 
 This project is a Minimum Viable Product (MVP) developed as part of the Sup de Vinci Bachelor 2 curriculum. It provides a full-stack digital solution to help agricultural professionals monitor their crops, track local weather conditions, and improve decision-making through an automated alert system.
